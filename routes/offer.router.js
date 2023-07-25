@@ -9,4 +9,5 @@ router.get("/", (req, res, next) => {
 router.post("/add", upload_offer, offerController.add);
 router.post("/update", upload_offer, offerController.update);
 router.post("/getall", offerController.getAll);
+router.post("/delete", offerController.delete);
 module.exports = router;

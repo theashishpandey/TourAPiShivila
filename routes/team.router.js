@@ -9,4 +9,5 @@ router.get("/", (req, res, next) => {
 router.post("/add", upload_team, teamController.add);
 router.post("/update", upload_team, teamController.update);
 router.post("/getall", teamController.getAll);
+router.post("/delete", teamController.delete);
 module.exports = router;

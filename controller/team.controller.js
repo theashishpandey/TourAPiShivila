@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const teamModel = require('../model/team.model')
 
 exports.add = async (req, res) => {
@@ -80,6 +81,25 @@ exports.getAll = async (req, res) => {
                     status: true,
                     message: "all teams",
                     data: success
+               })
+          })
+          .catch((error) => {
+               return res.json({
+                    status: true,
+                    message: "something went wrong",
+                    data: error
+               })
+          })
+}
+exports.delete = async (req, res) => {
+     const { id } = req.body
+
+     await teamModel.findByIdAndDelete({ _id: mongoose.Types.ObjectId(id) })
+          .then((success) => {
+               return res.json({
+                    status: true,
+                    message: "team deleted successfully",
+                    // data: success
                })
           })
           .catch((error) => {

@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const offerModel = require('../model/offer.model')
 
 exports.add = async (req, res) => {
@@ -80,6 +81,25 @@ exports.getAll = async (req, res) => {
                     status: true,
                     message: "all offers",
                     data: success
+               })
+          })
+          .catch((error) => {
+               return res.json({
+                    status: true,
+                    message: "something went wrong",
+                    data: error
+               })
+          })
+}
+exports.delete = async (req, res) => {
+     const { id } = req.body
+
+     await offerModel.findByIdAndDelete({ _id: mongoose.Types.ObjectId(id) })
+          .then((success) => {
+               return res.json({
+                    status: true,
+                    message: "offer deleted successfully",
+                    // data: success
                })
           })
           .catch((error) => {
